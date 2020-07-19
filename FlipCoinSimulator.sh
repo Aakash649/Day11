@@ -1,14 +1,11 @@
 #!/bin/bash -x
 
 
-read -p "Enter the number of times to run the simulator: " n;
-
-
 h=0
 t=0
 y=0
 
-while [ $y -lt $n ]
+while [ $h -lt 21 ] && [ $t -lt 21 ]
 do
 	x=$(($((RANDOM % 2))+1))
 
@@ -20,8 +17,22 @@ do
 		echo "Tail"
 		t=$(($t+1))
 	fi
-	y=$(($y+1))
+	
 done
 
-echo "Number of Head Count: " $h;
-echo "Number of Tail Count: " $t;
+if [ $h -gt $t ]
+then
+	echo "Head Won"
+	echo "Head Count: " $h
+	y=$(($h-$t))
+	echo "Head won by count of: " $y
+elif [ $h -eq $t ]
+then
+	echo "Both are equal"
+	echo "Its a Tie"
+else
+	echo "Tail Won"
+        echo "Tail Count: " $t
+        y=$(($t-$h))
+        echo "Tail won by count of: " $y
+fi
